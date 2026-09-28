@@ -2,16 +2,11 @@
   "pack": {
     "description": [
       {
-        "text": "Damage TP: ",
+        "text": "Damage TP",
         "color": "light_purple"
       },
       {
-        "text": "CHAOS",
-        "color": "red",
-        "bold": true
-      },
-      {
-        "text": "\nObrażenie = teleport: gdziekolwiek, 1000 kratek w górę, lawa, inny wymiar",
+        "text": "\nKażde obrażenie = teleport. Czasem wysoko w niebo, nad lawę albo do innego wymiaru.",
         "color": "gray"
       }
     ],

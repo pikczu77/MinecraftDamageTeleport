@@ -1,4 +1,4 @@
-# Damage TP: CHAOS - inicjalizacja
+# Damage TP - inicjalizacja
 # Obiekt "dtp": cooldown gracza + zmienne globalne (#nazwa)
 scoreboard objectives add dtp dummy
 # Obiekt "dtp.damage": statystyka "otrzymane obrażenia"
@@ -10,14 +10,11 @@ scoreboard objectives add dtp.deaths deathCount
 # dtp.next  : wymuszone następne zdarzenie (0 = losowe)
 # dtp.sky   : wysokość, na której otwiera się spadochron
 # dtp.skyt  : limit czasu spadania (zabezpieczenie)
-# dtp.count : licznik teleportacji
 scoreboard objectives add dtp.fx dummy
 scoreboard objectives add dtp.ev dummy
 scoreboard objectives add dtp.next dummy
 scoreboard objectives add dtp.sky dummy
 scoreboard objectives add dtp.skyt dummy
-scoreboard objectives add dtp.count dummy
-scoreboard objectives modify dtp.count displayname {"text":"Teleporty","color":"light_purple","bold":true}
 
 # --- Konfiguracja (zapisana w świecie, /reload jej nie nadpisuje) ---
 # Zmiana: /data modify storage dtp:config <klucz> set value <liczba>
@@ -32,12 +29,12 @@ scoreboard objectives modify dtp.count displayname {"text":"Teleporty","color":"
 #
 # Wagi zdarzeń (szansa = waga / suma wag, 0 = wyłączone):
 # w_random          : losowe miejsce w tym samym wymiarze (jak w oryginale)
-# w_sky             : 1000 kratek w górę
-# w_lava            : prosto do lawy
+# w_sky             : losowe miejsce, ale 1000 kratek nad ziemią
+# w_lava            : losowe miejsce prosto nad lawą
 # w_dimension       : inny wymiar (Overworld / Nether / End)
 #
-# sky_height        : o ile kratek w górę wyrzuca zdarzenie "niebo"
-# sky_save          : 0 = radź sobie sam, 1 = MLG (dostajesz wiadro wody), 2 = spadochron tuż nad ziemią
+# sky_height        : ile kratek nad ziemią ląduje teleport "niebo"
+# sky_save          : 0 = radź sobie sam, 1 = dostajesz wiadro wody na MLG, 2 = spadochron tuż nad ziemią
 # lava_time         : ile ticków po wpadnięciu do lawy następne obrażenie cię z niej wyrzuci
 # end_chance        : % szans, że skok między wymiarami trafi do Endu
 # dim_radius        : zasięg losowania miejsca po zmianie wymiaru
@@ -48,14 +45,11 @@ execute unless data storage dtp:config max_tries run data modify storage dtp:con
 execute unless data storage dtp:config nether_top_chance run data modify storage dtp:config nether_top_chance set value 15
 execute unless data storage dtp:config fx_delay run data modify storage dtp:config fx_delay set value 13
 execute unless data storage dtp:config fx_delay_dim run data modify storage dtp:config fx_delay_dim set value 30
-execute unless data storage dtp:config w_random run data modify storage dtp:config w_random set value 45
-execute unless data storage dtp:config w_sky run data modify storage dtp:config w_sky set value 15
-execute unless data storage dtp:config w_lava run data modify storage dtp:config w_lava set value 15
-execute unless data storage dtp:config w_dimension run data modify storage dtp:config w_dimension set value 25
 execute unless data storage dtp:config sky_height run data modify storage dtp:config sky_height set value 1000
-execute unless data storage dtp:config sky_save run data modify storage dtp:config sky_save set value 1
 execute unless data storage dtp:config lava_time run data modify storage dtp:config lava_time set value 20
 execute unless data storage dtp:config end_chance run data modify storage dtp:config end_chance set value 25
 execute unless data storage dtp:config dim_radius run data modify storage dtp:config dim_radius set value 300
+# Szanse zdarzeń i sky_save: ustawiane raz na wersję konfiguracji (patrz dtp:config_v2)
+execute unless data storage dtp:config {version:2} run function dtp:config_v2
 
-tellraw @a [{"text":"[Damage TP: CHAOS] ","color":"light_purple","bold":true},{"text":"załadowany! Każde obrażenie = losowa teleportacja: gdziekolwiek, 1000 kratek w górę, do lawy albo do innego wymiaru. ","color":"gray","bold":false},{"text":"Komendy: /function dtp:help ","color":"yellow","bold":false},{"text":"(oryginał: ToMiiX)","color":"dark_gray","bold":false,"italic":true}]
+tellraw @a [{"text":"[Damage TP] ","color":"light_purple","bold":true},{"text":"załadowany. Każde obrażenie teleportuje cię w losowe miejsce... zwykle. ","color":"gray","bold":false},{"text":"(by ToMiiX)","color":"gray","bold":false,"italic":true}]

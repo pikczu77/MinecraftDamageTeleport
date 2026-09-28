@@ -23,8 +23,10 @@ function dtp:roll
 execute if score @s dtp.next matches 1.. run scoreboard players operation #ev dtp = @s dtp.next
 scoreboard players set @s dtp.next 0
 execute if score #ev dtp matches 10 run function dtp:roll_dimension
-# W Netherze nad głową jest bedrock: zamiast "1000 w górę" zwykły teleport
+# Niebo tylko w Overworldzie: w Netherze nad głową jest bedrock, a w Endzie pod spodem
+# zwykle pustka. Tam zamiast tego zwykły teleport.
 execute if score #ev dtp matches 2 if predicate dtp:in_nether run scoreboard players set #ev dtp 1
+execute if score #ev dtp matches 2 if predicate dtp:in_end run scoreboard players set #ev dtp 1
 execute unless score #ev dtp matches 1..6 run scoreboard players set #ev dtp 1
 scoreboard players operation @s dtp.ev = #ev dtp
 

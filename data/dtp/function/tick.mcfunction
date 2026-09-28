@@ -1,4 +1,4 @@
-# Damage TP: CHAOS - pętla główna
+# Damage TP - pętla główna
 
 # Zabezpieczenie: znacznik punktu startu nigdy nie może przeżyć ticka.
 kill @e[type=minecraft:marker,tag=dtp.origin]
