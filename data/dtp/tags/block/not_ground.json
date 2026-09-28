@@ -1,0 +1,20 @@
+{
+  "values": [
+    "#dtp:passable",
+
+    "minecraft:lava",
+    { "id": "minecraft:magma_block", "required": false },
+    { "id": "minecraft:cactus", "required": false },
+    { "id": "minecraft:powder_snow", "required": false },
+    { "id": "minecraft:sweet_berry_bush", "required": false },
+    { "id": "minecraft:pointed_dripstone", "required": false },
+    { "id": "minecraft:cobweb", "required": false },
+
+    { "id": "minecraft:nether_portal", "required": false },
+    { "id": "minecraft:end_portal", "required": false },
+    { "id": "minecraft:end_gateway", "required": false },
+
+    { "id": "#minecraft:fire", "required": false },
+    { "id": "#minecraft:campfires", "required": false }
+  ]
+}
