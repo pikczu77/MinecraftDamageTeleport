@@ -5,8 +5,11 @@
 # Tryb 1 (lawa):
 #   - pod spodem 2 kratki naturalnego gruntu (zrobimy z nich dół z lawą)
 #   - 5 kratek suchego powietrza w górę (gracz pojawi się 3 kratki wyżej)
+# Tryb 2 (Deep Dark):
+#   - jak tryb 0, ale na sucho i tylko w biomie Deep Dark
 execute if score #mode dtp matches 0 if block ~ ~ ~ #dtp:passable if block ~ ~1 ~ #dtp:passable unless block ~ ~-1 ~ #dtp:not_ground run scoreboard players add #count dtp 1
 execute if score #mode dtp matches 1 if block ~ ~-1 ~ #dtp:lava_pit if block ~ ~-2 ~ #dtp:lava_pit if block ~ ~ ~ #dtp:dry if block ~ ~1 ~ #dtp:dry if block ~ ~2 ~ #dtp:dry if block ~ ~3 ~ #dtp:dry if block ~ ~4 ~ #dtp:dry run scoreboard players add #count dtp 1
+execute if score #mode dtp matches 2 if block ~ ~ ~ #dtp:dry if block ~ ~1 ~ #dtp:dry unless block ~ ~-1 ~ #dtp:not_ground if biome ~ ~ ~ minecraft:deep_dark run scoreboard players add #count dtp 1
 
 scoreboard players remove #y dtp 1
 execute if score #y dtp >= #ymin dtp positioned ~ ~-1 ~ run function dtp:scan_count

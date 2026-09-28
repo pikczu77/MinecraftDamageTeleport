@@ -19,6 +19,8 @@ tag @s remove dtp.onroof
 scoreboard players set #tries dtp 0
 scoreboard players set #mode dtp 0
 scoreboard players set #dimhop dtp 0
+scoreboard players set #buddy dtp 0
+scoreboard players set #dfail dtp 0
 
 # Losowanie zdarzenia -> #ev (albo zdarzenie wymuszone przez dtp:next/... lub dtp:now/...)
 function dtp:roll
@@ -29,10 +31,10 @@ execute if score #ev dtp matches 10 run function dtp:roll_dimension
 # zwykle pustka. Tam zamiast tego zwykły teleport.
 execute if score #ev dtp matches 2 if predicate dtp:in_nether run scoreboard players set #ev dtp 1
 execute if score #ev dtp matches 2 if predicate dtp:in_end run scoreboard players set #ev dtp 1
-# Ocean też tylko w Overworldzie
-execute if score #ev dtp matches 8 if predicate dtp:in_nether run scoreboard players set #ev dtp 1
-execute if score #ev dtp matches 8 if predicate dtp:in_end run scoreboard players set #ev dtp 1
-execute unless score #ev dtp matches 1..8 run scoreboard players set #ev dtp 1
+# Ocean i Deep Dark też tylko w Overworldzie (tylko tam są takie biomy)
+execute if score #ev dtp matches 8..9 if predicate dtp:in_nether run scoreboard players set #ev dtp 1
+execute if score #ev dtp matches 8..9 if predicate dtp:in_end run scoreboard players set #ev dtp 1
+execute unless score #ev dtp matches 1..11 run scoreboard players set #ev dtp 1
 scoreboard players operation @s dtp.ev = #ev dtp
 
 # Znacznik punktu startu, żeby móc cofnąć gracza, jeśli nic nie znajdziemy
@@ -53,5 +55,7 @@ execute if score #ev dtp matches 5 run function dtp:event/overworld
 execute if score #ev dtp matches 6 run function dtp:event/end
 execute if score #ev dtp matches 7 run function dtp:event/roof
 execute if score #ev dtp matches 8 run function dtp:event/ocean
+execute if score #ev dtp matches 9 run function dtp:event/deep_dark
+execute if score #ev dtp matches 11 run function dtp:event/creeper
 
 kill @e[type=minecraft:marker,tag=dtp.origin]

@@ -8,9 +8,11 @@ tellraw @s [{"text":"  Nad lawę: ","color":"gold"},{"nbt":"w_lava","storage":"d
 tellraw @s [{"text":"  Inny wymiar: ","color":"red"},{"nbt":"w_dimension","storage":"dtp:config","color":"white"},{"text":"   w_dimension  (End: ","color":"dark_gray"},{"nbt":"end_chance","storage":"dtp:config","color":"white"},{"text":"%)","color":"dark_gray"}]
 tellraw @s [{"text":"  Dach Netheru: ","color":"dark_red"},{"nbt":"w_roof","storage":"dtp:config","color":"white"},{"text":"   w_roof","color":"dark_gray"}]
 tellraw @s [{"text":"  Środek oceanu: ","color":"blue"},{"nbt":"w_ocean","storage":"dtp:config","color":"white"},{"text":"   w_ocean","color":"dark_gray"}]
+tellraw @s [{"text":"  Deep Dark: ","color":"dark_aqua"},{"nbt":"w_deep_dark","storage":"dtp:config","color":"white"},{"text":"   w_deep_dark","color":"dark_gray"}]
+tellraw @s [{"text":"  Creeper-towarzysz: ","color":"green"},{"nbt":"w_creeper","storage":"dtp:config","color":"white"},{"text":"   w_creeper","color":"dark_gray"}]
 tellraw @s [{"text":"Ratunek w niebie (sky_save): ","color":"gray"},{"nbt":"sky_save","storage":"dtp:config","color":"white"},{"text":"  0 = brak, 1 = wiadro wody (MLG), 2 = spadochron","color":"dark_gray"}]
 tellraw @s {"text":"Komendy:","color":"yellow"}
-tellraw @s [{"text":"  /function dtp:now/","color":"white"},{"text":"<lava|sky|roof|ocean|nether|overworld|end|dimension|teleport|any>","color":"gray"}]
+tellraw @s [{"text":"  /function dtp:now/","color":"white"},{"text":"<lava|sky|roof|ocean|deep_dark|creeper|nether|overworld|end|dimension|teleport|any>","color":"gray"}]
 tellraw @s {"text":"      teleport od razu (test / nagrywanie)","color":"dark_gray"}
 tellraw @s [{"text":"  /function dtp:next/","color":"white"},{"text":"<to samo>","color":"gray"}]
 tellraw @s {"text":"      wymusza zdarzenie przy następnym obrażeniu","color":"dark_gray"}

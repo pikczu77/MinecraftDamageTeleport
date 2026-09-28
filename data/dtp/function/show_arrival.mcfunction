@@ -21,3 +21,5 @@ execute if score @s dtp.ev matches 5 run function dtp:arrival/overworld
 execute if score @s dtp.ev matches 6 run function dtp:arrival/end
 execute if score @s dtp.ev matches 7 run function dtp:arrival/roof
 execute if score @s dtp.ev matches 8 run function dtp:arrival/ocean
+execute if score @s dtp.ev matches 9 run function dtp:arrival/deep_dark
+execute if score @s dtp.ev matches 11 run function dtp:arrival/creeper

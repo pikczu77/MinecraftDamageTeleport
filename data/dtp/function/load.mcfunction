@@ -49,6 +49,8 @@ scoreboard players set #392 dtp 392
 # w_dimension       : inny wymiar (Overworld / Nether / End)
 # w_roof            : dach Netheru (bedrock, zejdziesz tylko, jak się zranisz)
 # w_ocean           : środek oceanu (tylko z Overworldu)
+# w_deep_dark       : jaskinia w Deep Darku (tylko z Overworldu)
+# w_creeper         : zwykły teleport, ale creeper teleportuje się razem z tobą
 #
 # sky_height        : ile kratek nad ziemią ląduje teleport "niebo"
 # sky_save          : 0 = radź sobie sam, 1 = wiadro wody na MLG, 2 = spadochron tuż nad ziemią
@@ -56,6 +58,7 @@ scoreboard players set #392 dtp 392
 # end_chance        : % szans, że skok między wymiarami trafi do Endu
 # dim_radius        : zasięg losowania miejsca po zmianie wymiaru
 # roof_time         : po ilu tickach mod sam zdejmuje cię z dachu Netheru (20 = 1 s)
+# deep_dark_tries   : ile kolumn sprawdzamy, szukając Deep Darku
 execute unless data storage dtp:config enabled run data modify storage dtp:config enabled set value 1
 execute unless data storage dtp:config radius run data modify storage dtp:config radius set value 2500
 execute unless data storage dtp:config cooldown run data modify storage dtp:config cooldown set value 40
@@ -68,9 +71,11 @@ execute unless data storage dtp:config lava_time run data modify storage dtp:con
 execute unless data storage dtp:config end_chance run data modify storage dtp:config end_chance set value 25
 execute unless data storage dtp:config dim_radius run data modify storage dtp:config dim_radius set value 300
 execute unless data storage dtp:config roof_time run data modify storage dtp:config roof_time set value 1200
-# Szanse zdarzeń i sky_save: ustawiane raz na wersję konfiguracji (dtp:config_v2 ... dtp:config_v4)
+execute unless data storage dtp:config deep_dark_tries run data modify storage dtp:config deep_dark_tries set value 20
+# Szanse zdarzeń i sky_save: ustawiane raz na wersję konfiguracji (dtp:config_v2 ... dtp:config_v5)
 execute unless data storage dtp:config version run function dtp:config_v2
 execute if data storage dtp:config {version:2} run function dtp:config_v3
 execute if data storage dtp:config {version:3} run function dtp:config_v4
+execute if data storage dtp:config {version:4} run function dtp:config_v5
 
 tellraw @a [{"text":"[Damage TP] ","color":"light_purple","bold":true},{"text":"załadowany. Każde obrażenie teleportuje cię w losowe miejsce... zwykle. ","color":"gray","bold":false},{"text":"(by ToMiiX)","color":"gray","bold":false,"italic":true}]
