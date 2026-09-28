@@ -10,10 +10,12 @@ execute store result score #lava_time dtp run data get storage dtp:config lava_t
 execute store result score #sky dtp run data get storage dtp:config sky_height
 execute store result score #sky_save dtp run data get storage dtp:config sky_save
 execute store result score #end_chance dtp run data get storage dtp:config end_chance
+execute store result score #roof_time dtp run data get storage dtp:config roof_time
 
 scoreboard players operation @s dtp = #cooldown dtp
 scoreboard players set @s dtp.fx -1
 tag @s remove dtp.falling
+tag @s remove dtp.onroof
 scoreboard players set #tries dtp 0
 scoreboard players set #mode dtp 0
 scoreboard players set #dimhop dtp 0
@@ -27,7 +29,10 @@ execute if score #ev dtp matches 10 run function dtp:roll_dimension
 # zwykle pustka. Tam zamiast tego zwykły teleport.
 execute if score #ev dtp matches 2 if predicate dtp:in_nether run scoreboard players set #ev dtp 1
 execute if score #ev dtp matches 2 if predicate dtp:in_end run scoreboard players set #ev dtp 1
-execute unless score #ev dtp matches 1..6 run scoreboard players set #ev dtp 1
+# Ocean też tylko w Overworldzie
+execute if score #ev dtp matches 8 if predicate dtp:in_nether run scoreboard players set #ev dtp 1
+execute if score #ev dtp matches 8 if predicate dtp:in_end run scoreboard players set #ev dtp 1
+execute unless score #ev dtp matches 1..8 run scoreboard players set #ev dtp 1
 scoreboard players operation @s dtp.ev = #ev dtp
 
 # Znacznik punktu startu, żeby móc cofnąć gracza, jeśli nic nie znajdziemy
@@ -46,5 +51,7 @@ execute if score #ev dtp matches 3 run function dtp:event/lava
 execute if score #ev dtp matches 4 run function dtp:event/nether
 execute if score #ev dtp matches 5 run function dtp:event/overworld
 execute if score #ev dtp matches 6 run function dtp:event/end
+execute if score #ev dtp matches 7 run function dtp:event/roof
+execute if score #ev dtp matches 8 run function dtp:event/ocean
 
 kill @e[type=minecraft:marker,tag=dtp.origin]

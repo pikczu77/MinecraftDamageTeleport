@@ -9,3 +9,7 @@ scoreboard players operation #r dtp -= #w2 dtp
 execute if score #r dtp matches 0.. run scoreboard players set #ev dtp 3
 scoreboard players operation #r dtp -= #w3 dtp
 execute if score #r dtp matches 0.. run scoreboard players set #ev dtp 10
+scoreboard players operation #r dtp -= #w4 dtp
+execute if score #r dtp matches 0.. run scoreboard players set #ev dtp 7
+scoreboard players operation #r dtp -= #w5 dtp
+execute if score #r dtp matches 0.. run scoreboard players set #ev dtp 8

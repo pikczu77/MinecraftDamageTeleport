@@ -8,12 +8,14 @@ Różnica jest taka, że co któryś teleport jest śmieszny, pod film:
 | Dokąd | Co się dzieje | Szansa (domyślnie) |
 |---|---|---|
 | **Losowe miejsce** | zwykły teleport, do 2500 kratek dalej, jak w oryginale | 70% |
-| **Wysoko w niebo** | losowe miejsce, ale 1000 kratek nad ziemią | 10% |
-| **Nad lawę** | losowe miejsce, 3 kratki nad dołem pełnym lawy | 10% |
-| **Inny wymiar** | Overworld ↔ Nether ↔ End (End to 25% z tych skoków) | 10% |
+| **Wysoko w niebo** | losowe miejsce, ale 1000 kratek nad ziemią | 6% |
+| **Nad lawę** | losowe miejsce, 3 kratki nad dołem pełnym lawy | 6% |
+| **Inny wymiar** | Overworld ↔ Nether ↔ End (End to 25% z tych skoków) | 6% |
+| **Dach Netheru** | na bedrockowy sufit Netheru, skąd zejdziesz tylko, jak się zranisz | 6% |
+| **Środek oceanu** | na wodę, daleko od lądu | 6% |
 
 Śmieszne teleporty mają duży napis na ekranie („☁ 1000 KRATEK NAD ZIEMIĄ! ☁”,
-„♨ LAWA! ♨”, „NETHER!”, „THE END”), dźwięki i cząsteczki. Zwykły wygląda jak w
+„♨ LAWA! ♨”, „NETHER!”, „THE END”, „DACH NETHERU”, „ŚRODEK OCEANU”), dźwięki i cząsteczki. Zwykły wygląda jak w
 oryginale: dźwięk endermana i współrzędne na pasku akcji.
 
 ## Instalacja
@@ -46,6 +48,15 @@ włączonych kodów (op / „Zezwalaj na kody”).
 - **Inny wymiar**: do Netheru współrzędne dzielą się przez 8, jak przy portalu,
   i skan szuka bezpiecznego miejsca w promieniu `dim_radius`. Do Endu trafiasz
   na obsydianową platformę, tak jak przez portal. Smok czeka.
+- **Dach Netheru**: lądujesz na bedrockowym suficie Netheru (Y 128). Nie da się
+  stamtąd zejść normalnie. Musisz się zranić: skoczyć z 4 kratek, rzucić perłę
+  kresu, cokolwiek. Obrażenie oznacza teleport, który zabiera cię z dachu. Na pasku akcji
+  widać „Utknąłeś na dachu Netheru! Zrań się, żeby zejść... albo czekaj 58 s”.
+  Jeśli nie masz jak się zranić, po minucie (`roof_time`) mod sam cię zdejmie.
+  Działa z każdego wymiaru; z Overworldu współrzędne dzielą się przez 8.
+- **Środek oceanu**: losowe miejsce w zasięgu `radius`, ale na wodzie. Najpierw
+  szuka biomu głębokiego oceanu (tam zwykle nie widać lądu), potem dowolnego
+  oceanu. Jeśli w zasięgu nie ma oceanu, robi zwykły teleport. Tylko w Overworldzie.
 
 Tryb kreatywny i obserwatora się nie teleportuje. Przez 2 sekundy po teleporcie
 (`cooldown`) obrażenia nie teleportują.
@@ -59,7 +70,7 @@ Tryb kreatywny i obserwatora się nie teleportuje. Przez 2 sekundy po teleporcie
 | `/function dtp:next/lava` | wybrany rodzaj przy **następnym obrażeniu** (do zaplanowanych scen) |
 | `/function dtp:on`, `dtp:off` | włącza / wyłącza datapack |
 
-Zamiast `lava` w `now/` i `next/` można wpisać: `sky`, `nether`, `overworld`,
+Zamiast `lava` w `now/` i `next/` można wpisać: `sky`, `roof`, `ocean`, `nether`, `overworld`,
 `end`, `dimension` (losowy inny wymiar), `teleport` (zwykłe losowe miejsce),
 `any` (losowo według szans; `next/any` kasuje wymuszony teleport).
 
@@ -74,15 +85,18 @@ i zapisują się w świecie (`/reload` ich nie resetuje).
 | Klucz | Domyślnie | Znaczenie |
 |---|---|---|
 | `w_random` | 70 | szansa: zwykłe losowe miejsce |
-| `w_sky` | 10 | szansa: wysoko w niebo |
-| `w_lava` | 10 | szansa: nad lawę |
-| `w_dimension` | 10 | szansa: inny wymiar |
+| `w_sky` | 6 | szansa: wysoko w niebo |
+| `w_lava` | 6 | szansa: nad lawę |
+| `w_dimension` | 6 | szansa: inny wymiar |
+| `w_roof` | 6 | szansa: dach Netheru |
+| `w_ocean` | 6 | szansa: środek oceanu |
 | `end_chance` | 25 | % skoków między wymiarami, które trafiają do Endu (0 = nigdy) |
 | `sky_height` | 1000 | ile kratek nad ziemią ląduje teleport w niebo |
 | `sky_save` | 1 | ratunek w niebie: 0 = brak, 1 = wiadro wody na MLG (jeśli go nie masz), 2 = spadochron 64 kratki nad ziemią |
 | `lava_time` | 20 | ile ticków siedzisz w lawie, zanim obrażenie cię z niej wyrzuci (20 = 1 s; więcej = groźniej) |
 | `radius` | 2500 | zasięg losowego miejsca (kratki) |
-| `dim_radius` | 300 | zasięg losowania po zmianie wymiaru |
+| `dim_radius` | 300 | zasięg losowania po zmianie wymiaru i na dachu Netheru |
+| `roof_time` | 1200 | po ilu tickach mod sam zdejmuje cię z dachu Netheru (1200 = 1 min) |
 | `cooldown` | 40 | ticki bez teleportu po teleporcie |
 | `enabled` | 1 | 1 = włączony, 0 = wyłączony |
 | `max_tries` | 8 | ile kolumn próbujemy, zanim się poddamy |
@@ -90,7 +104,7 @@ i zapisują się w świecie (`/reload` ich nie resetuje).
 | `fx_delay` / `fx_delay_dim` | 13 / 30 | opóźnienie napisów i dźwięków (ticki) po zwykłym teleporcie / zmianie wymiaru |
 
 Szansa to waga podzielona przez sumę wag, a 0 wyłącza dany rodzaj. Żeby mieć
-dokładnie oryginał, ustaw `w_sky`, `w_lava` i `w_dimension` na 0.
+dokładnie oryginał, ustaw `w_sky`, `w_lava`, `w_dimension`, `w_roof` i `w_ocean` na 0.
 
 ## Porady do nagrywania
 

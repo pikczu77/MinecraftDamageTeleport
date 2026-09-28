@@ -20,5 +20,8 @@ execute as @a[scores={dtp.fx=0}] at @s run function dtp:show_arrival
 # Spadochron dla spadających z nieba (sky_save = 2)
 execute as @a[tag=dtp.falling] at @s run function dtp:sky_watch
 
+# Uwięzieni na dachu Netheru: odliczanie do awaryjnego zejścia
+execute as @a[tag=dtp.onroof] at @s run function dtp:roof_watch
+
 # Wyzwalacz: każdy gracz, któremu drgnął licznik obrażeń
 execute as @a[scores={dtp.damage=1..},tag=dtp.ready] at @s run function dtp:on_damage
