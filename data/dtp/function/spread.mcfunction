@@ -1,2 +1,2 @@
-# Macro. Tirage horizontal aleatoire dans le rayon configure, centre sur le point de depart.
+# Makro. Losowanie X/Z w promieniu $(radius) wokół punktu startu.
 $spreadplayers ~ ~ 0 $(radius) false @s

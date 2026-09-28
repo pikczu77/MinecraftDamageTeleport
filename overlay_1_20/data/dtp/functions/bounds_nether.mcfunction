@@ -1,9 +1,8 @@
-# La bedrock du plafond du Nether est irreguliere entre Y 123 et 127 : elle laisse des
-# poches d'air posees dessus, qui passent tous les tests d'emplacement valide. Comme une
-# colonne du Nether n'offre souvent que 3 ou 4 emplacements, ces poches sortaient bien
-# trop souvent.
-# On limite donc le scan a 110 la plupart du temps ; la zone haute n'est ouverte que
-# dans nether_top_chance % des tirages (elle reste donc possible, juste rare).
+# Bedrock sufitu Netheru jest nierówny między Y 123 a 127 i zostawia na sobie kieszenie
+# powietrza, które przechodzą wszystkie testy dobrego miejsca. Kolumna w Netherze ma
+# często tylko 3-4 dobre miejsca, więc te kieszenie wypadały zdecydowanie za często.
+# Dlatego zwykle skanujemy tylko do 110; strefa pod samym sufitem jest otwarta
+# w nether_top_chance % losowań (możliwa, ale rzadka).
 scoreboard players set #ymin dtp 1
 scoreboard players set #ymax dtp 110
 execute store result score #roll dtp run random value 1..100

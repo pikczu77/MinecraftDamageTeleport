@@ -1,9 +1,9 @@
-# Bornes verticales du scan selon la dimension.
-# Le sol solide obligatoire sous les pieds interdit deja le vide et le dessous de la bedrock ;
-# ces bornes servent surtout a rester sous le plafond de bedrock du Nether.
+# Pionowe granice skanu zależnie od wymiaru.
+# Wymóg stałego gruntu pod stopami i tak wyklucza pustkę i miejsca pod bedrockiem;
+# granice są głównie po to, żeby nie wchodzić nad sufit Netheru.
 #
-# On passe par des predicats "location_check" plutot que par "execute if dimension" :
-# les predicats existent depuis toujours, "if dimension" est bien plus recent.
+# Predykaty "location_check" zamiast "execute if dimension": predykaty są od zawsze,
+# "if dimension" jest dużo nowsze.
 scoreboard players set #ymin dtp -63
 scoreboard players set #ymax dtp 318
 execute if predicate dtp:in_nether run function dtp:bounds_nether

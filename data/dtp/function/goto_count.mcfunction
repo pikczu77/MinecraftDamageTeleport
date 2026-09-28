@@ -1,2 +1,2 @@
-# Macro. Se place en haut de la colonne (X/Z du joueur, Y absolu) et lance le scan comptant.
+# Makro. Staje na górze kolumny (X/Z gracza, Y bezwzględne) i rusza z liczeniem.
 $execute positioned ~ $(y) ~ run function dtp:scan_count

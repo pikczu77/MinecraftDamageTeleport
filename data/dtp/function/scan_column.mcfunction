@@ -1,5 +1,5 @@
-# Passe 1 : compte les emplacements ou l'on peut tenir debout dans la colonne du joueur.
-# Execute "as"/"at" le joueur, apres le spreadplayers.
+# Przejście 1: liczy miejsca w kolumnie gracza, w których da się stanąć.
+# Wykonywane "as"/"at" gracza, po spreadplayers.
 function dtp:bounds
 scoreboard players operation #y dtp = #ymax dtp
 function dtp:goto_count with storage dtp:tmp

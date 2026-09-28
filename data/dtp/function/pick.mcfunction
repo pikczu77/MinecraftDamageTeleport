@@ -1,5 +1,5 @@
-# Choisit uniformement un des emplacements valides trouves dans la colonne,
-# puis relance le scan pour aller le chercher. Execute "as"/"at" le joueur.
+# Wybiera losowo jedno z dobrych miejsc znalezionych w kolumnie
+# i skanuje ją jeszcze raz, żeby do niego dojść. Wykonywane "as"/"at" gracza.
 execute store result storage dtp:tmp n int 1 run scoreboard players get #count dtp
 function dtp:roll_target with storage dtp:tmp
 

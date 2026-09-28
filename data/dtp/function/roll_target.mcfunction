@@ -1,2 +1,2 @@
-# Macro. Choisit le n-ieme emplacement valide, n aleatoire entre 1 et le total.
+# Makro. Wybiera n-te dobre miejsce, n losowe od 1 do liczby znalezionych.
 $execute store result score #target dtp run random value 1..$(n)

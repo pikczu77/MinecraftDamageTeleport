@@ -1,7 +1,6 @@
-# Variante 1.20.x, sans "return run".
 execute if score #tries dtp >= #max_tries dtp run function dtp:fail
 execute if score #tries dtp < #max_tries dtp run function dtp:attempt
 
-# Neutralise le compteur pour l'appelant : il ne doit pas relancer dtp:pick avec la
-# valeur laissee par la tentative imbriquee.
+# Zerujemy licznik dla wywołującego: nie może odpalić dtp:pick z wartością
+# zostawioną przez zagnieżdżoną próbę.
 scoreboard players set #count dtp 0

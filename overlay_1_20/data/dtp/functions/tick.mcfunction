@@ -1,19 +1,24 @@
-# Damage TP - boucle principale
+# Damage TP: CHAOS - pętla główna
 
-# Filet de securite : un repere de depart ne doit jamais survivre a un tick.
+# Zabezpieczenie: znacznik punktu startu nigdy nie może przeżyć ticka.
 kill @e[type=minecraft:marker,tag=dtp.origin]
 
-# Les joueurs jamais vus ont deja une statistique "degats subis" non nulle :
-# on la remet a zero une fois pour toutes, sinon ils se teleportent des la connexion.
+# Nowi gracze mają już niezerową statystykę obrażeń:
+# zerujemy ją raz, inaczej teleportowaliby się zaraz po wejściu.
 execute as @a[tag=!dtp.ready] run function dtp:init_player
 
-# Decompte du cooldown
+# Śmierć: czyścimy stan, żeby śmiertelne obrażenie nie teleportowało po odrodzeniu.
+execute as @a[scores={dtp.deaths=1..}] run function dtp:on_death
+
+# Odliczanie cooldownu
 scoreboard players remove @a[scores={dtp=1..}] dtp 1
 
-# Retour d'arrivee differe : quand le compteur atteint 0, on joue le son et l'action bar
-# (le score est remis a -1 par show_arrival pour ne declencher qu'une fois)
+# Efekty przybycia odpalane z opóźnieniem (score wraca do -1 w show_arrival)
 scoreboard players remove @a[scores={dtp.fx=1..}] dtp.fx 1
 execute as @a[scores={dtp.fx=0}] at @s run function dtp:show_arrival
 
-# Declenchement : tout joueur dont le compteur de degats a bouge
+# Spadochron dla spadających z nieba (sky_save = 2)
+execute as @a[tag=dtp.falling] at @s run function dtp:sky_watch
+
+# Wyzwalacz: każdy gracz, któremu drgnął licznik obrażeń
 execute as @a[scores={dtp.damage=1..},tag=dtp.ready] at @s run function dtp:on_damage

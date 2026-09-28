@@ -1,9 +1,9 @@
-# Atterrissage. Execute "as" le joueur, "at" l'emplacement retenu.
+# Lądowanie. Wykonywane "as" gracz, "at" wybrane miejsce.
 scoreboard players set #done dtp 1
 
-tp @s ~ ~ ~
+execute if score #mode dtp matches 0 run tp @s ~ ~ ~
+execute if score #mode dtp matches 1 run function dtp:lava_pit
 
-# Le son, l'action bar et les particules d'arrivee sont differes de quelques ticks
-# (voir dtp:show_arrival) : envoyes maintenant, ils se perdent pendant que le client
-# charge le terrain de destination.
-scoreboard players operation @s dtp.fx = #fx_delay dtp
+# Dźwięk, napisy i cząsteczki są opóźnione (patrz dtp:show_arrival): wysłane teraz,
+# giną, zanim klient doczyta teren w nowym miejscu.
+function dtp:arrived

@@ -1,19 +1,22 @@
-# Une tentative = une colonne tiree au sort, scannee de haut en bas.
-# Execute "as"/"at" le joueur, la position du contexte restant le point de depart.
+# Jedna próba = jedna losowa kolumna, skanowana z góry na dół.
+# Wykonywane "as"/"at" gracza; pozycja kontekstu to cały czas punkt startu losowania.
+#
+# Bez "return run" (nie ma go w 1.20.2): obie gałęzie wykluczają się przez #count
+# (dtp:retry zeruje go na wyjściu, inaczej udana głęboka próba odpalałaby dtp:pick
+# na każdym poziomie powrotu).
 
 scoreboard players add #tries dtp 1
 scoreboard players set #count dtp 0
 
-# spreadplayers fait deux choses d'un coup : il tire le X/Z au hasard dans le rayon
-# ET il force la generation du chunk vise. Un simple test de bloc a 2500 blocs
-# ne garantit pas que le terrain existe deja.
-function dtp:spread with storage dtp:config
+# spreadplayers robi dwie rzeczy naraz: losuje X/Z w promieniu I wymusza
+# wygenerowanie chunka. Sam test bloku 2500 kratek dalej nie gwarantuje, że teren istnieje.
+function dtp:spread with storage dtp:tmp
 
-# Le joueur a bouge : la position du contexte est obsolete, on se re-ancre sur lui.
+# Gracz się przesunął: pozycja kontekstu jest nieaktualna, kotwiczymy się na nim.
 execute at @s run function dtp:scan_column
 
-# Colonne inexploitable (pleine, vide, ou uniquement de la lave) -> on retire au sort
-execute if score #count dtp matches 0 run return run function dtp:retry
+# Kolumna bezużyteczna (pełna, pusta, sama lawa) -> losujemy jeszcze raz
+execute if score #count dtp matches 0 run function dtp:retry
 
-# Passe 2 : choisir un des emplacements valides et y atterrir
-execute at @s run function dtp:pick
+# Przejście 2: wybieramy jedno z dobrych miejsc i lądujemy
+execute if score #count dtp matches 1.. at @s run function dtp:pick

@@ -1,9 +1,25 @@
 {
   "pack": {
-    "description": "Damage TP - chaque degat teleporte a un endroit aleatoire de la dimension",
-
+    "description": [
+      {
+        "text": "Damage TP: ",
+        "color": "light_purple"
+      },
+      {
+        "text": "CHAOS",
+        "color": "red",
+        "bold": true
+      },
+      {
+        "text": "\nObrażenie = teleport: gdziekolwiek, 1000 kratek w górę, lawa, inny wymiar",
+        "color": "gray"
+      }
+    ],
     "pack_format": 107,
-    "supported_formats": { "min_inclusive": 18, "max_inclusive": 200 },
+    "supported_formats": {
+      "min_inclusive": 18,
+      "max_inclusive": 200
+    },
     "min_format": 18,
     "max_format": 200
   },
@@ -11,7 +27,10 @@
     "entries": [
       {
         "directory": "overlay_1_20",
-        "formats": { "min_inclusive": 18, "max_inclusive": 41 },
+        "formats": {
+          "min_inclusive": 18,
+          "max_inclusive": 41
+        },
         "min_format": 18,
         "max_format": 41
       }

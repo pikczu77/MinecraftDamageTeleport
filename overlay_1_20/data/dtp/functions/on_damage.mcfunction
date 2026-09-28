@@ -1,7 +1,7 @@
-# Execute "as" et "at" le joueur qui vient de prendre des degats.
-# Variante 1.20.x : pas de "/return", on passe par un drapeau #go.
+# Wykonywane "as" i "at" gracza, który właśnie dostał obrażenia.
+# Bez "/return" (1.20.2 nie ma jeszcze "return run"), żeby jeden plik działał wszędzie: flaga #go.
 
-# On consomme le compteur immediatement, quoi qu'il arrive ensuite.
+# Licznik zużywamy od razu, cokolwiek stanie się dalej.
 scoreboard players set @s dtp.damage 0
 
 scoreboard players set #go dtp 1
