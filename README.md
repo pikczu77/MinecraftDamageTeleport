@@ -28,10 +28,16 @@ włączonych kodów (op / „Zezwalaj na kody”).
 ## Śmieszne teleporty dokładniej
 
 - **Wysoko w niebo**: miejsce losuje się jak przy zwykłym teleporcie, a potem
-  lądujesz 1000 kratek nad ziemią i spadasz ~15 sekund. Domyślnie nic cię nie
-  ratuje (`sky_save` = 0). Jest to możliwe tylko w Overworldzie: w Netherze
-  nad głową jest bedrock, a w Endzie pod spodem zwykle pustka, więc tam zamiast
-  tego jest zwykły teleport.
+  lądujesz 1000 kratek nad ziemią i spadasz ~15 sekund.
+  - Dostajesz **wiadro wody** na MLG, jeśli jeszcze go nie masz (trafia na pierwsze
+    wolne miejsce, zwykle na pasek szybkiego wyboru; przy pełnym ekwipunku wypada).
+  - Na pasku akcji leci **timer**: „↓ Ziemia za 12,3 s   812 kratek”, a przez
+    ostatnie 2 sekundy na czerwono „⚠ ZIEMIA ZA 1,4 s! ⚠”. Przez ostatnie 5 sekund
+    co sekundę słychać pik.
+  - Jak przeżyjesz (woda, jezioro, szczęście), na ekranie pojawia się **„MLG!”**.
+
+  Jest to możliwe tylko w Overworldzie: w Netherze nad głową jest bedrock,
+  a w Endzie pod spodem zwykle pustka, więc tam zamiast tego jest zwykły teleport.
 - **Nad lawę**: skan szuka suchego, naturalnego gruntu (ziemia, kamień, piasek,
   netherrack, end stone...), robi pod tobą dół 3x3 głęboki na 2 kratki, zalany
   lawą, i teleportuje cię 3 kratki nad nim, więc widzisz, w co wpadasz.
@@ -73,7 +79,7 @@ i zapisują się w świecie (`/reload` ich nie resetuje).
 | `w_dimension` | 10 | szansa: inny wymiar |
 | `end_chance` | 25 | % skoków między wymiarami, które trafiają do Endu (0 = nigdy) |
 | `sky_height` | 1000 | ile kratek nad ziemią ląduje teleport w niebo |
-| `sky_save` | 0 | ratunek w niebie: 0 = brak, 1 = wiadro wody na MLG (jeśli go nie masz), 2 = spadochron 64 kratki nad ziemią |
+| `sky_save` | 1 | ratunek w niebie: 0 = brak, 1 = wiadro wody na MLG (jeśli go nie masz), 2 = spadochron 64 kratki nad ziemią |
 | `lava_time` | 20 | ile ticków siedzisz w lawie, zanim obrażenie cię z niej wyrzuci (20 = 1 s; więcej = groźniej) |
 | `radius` | 2500 | zasięg losowego miejsca (kratki) |
 | `dim_radius` | 300 | zasięg losowania po zmianie wymiaru |
@@ -90,7 +96,7 @@ dokładnie oryginał, ustaw `w_sky`, `w_lava` i `w_dimension` na 0.
 
 - Przed nagraniem przetestuj każdy teleport: `/function dtp:now/sky`, `.../lava`, `.../end`...
 - Chcesz konkretną scenę? `/function dtp:next/end`, a potem daj się uderzyć zombie.
-- Za dużo śmierci w niebie? `sky_save` na 1 (wiadro wody) albo 2 (spadochron).
+- Za dużo śmierci w niebie? Ustaw `sky_save` na 2 (spadochron). Chcesz bez wiadra? Ustaw na 0.
 
 ## Dla twórców
 

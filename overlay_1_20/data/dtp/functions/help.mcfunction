@@ -6,7 +6,7 @@ tellraw @s [{"text":"  Losowe miejsce: ","color":"light_purple"},{"nbt":"w_rando
 tellraw @s [{"text":"  Wysoko w niebo: ","color":"aqua"},{"nbt":"w_sky","storage":"dtp:config","color":"white"},{"text":"   w_sky","color":"dark_gray"}]
 tellraw @s [{"text":"  Nad lawę: ","color":"gold"},{"nbt":"w_lava","storage":"dtp:config","color":"white"},{"text":"   w_lava","color":"dark_gray"}]
 tellraw @s [{"text":"  Inny wymiar: ","color":"red"},{"nbt":"w_dimension","storage":"dtp:config","color":"white"},{"text":"   w_dimension  (End: ","color":"dark_gray"},{"nbt":"end_chance","storage":"dtp:config","color":"white"},{"text":"%)","color":"dark_gray"}]
-tellraw @s [{"text":"Ratunek w niebie (sky_save): ","color":"gray"},{"nbt":"sky_save","storage":"dtp:config","color":"white"},{"text":"  0 = brak, 1 = wiadro wody, 2 = spadochron","color":"dark_gray"}]
+tellraw @s [{"text":"Ratunek w niebie (sky_save): ","color":"gray"},{"nbt":"sky_save","storage":"dtp:config","color":"white"},{"text":"  0 = brak, 1 = wiadro wody (MLG), 2 = spadochron","color":"dark_gray"}]
 tellraw @s {"text":"Komendy:","color":"yellow"}
 tellraw @s [{"text":"  /function dtp:now/","color":"white"},{"text":"<lava|sky|nether|overworld|end|dimension|teleport|any>","color":"gray"}]
 tellraw @s {"text":"      teleport od razu (test / nagrywanie)","color":"dark_gray"}

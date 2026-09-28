@@ -8,13 +8,26 @@ scoreboard objectives add dtp.deaths deathCount
 # dtp.fx    : odliczanie do efektów przybycia (-1 = nieaktywne)
 # dtp.ev    : jakie zdarzenie trafiło gracza ostatnio
 # dtp.next  : wymuszone następne zdarzenie (0 = losowe)
-# dtp.sky   : wysokość, na której otwiera się spadochron
-# dtp.skyt  : limit czasu spadania (zabezpieczenie)
+# Spadanie z nieba (dtp:sky_tick): dtp.gy wysokość ziemi, dtp.py poprzednia wysokość,
+# dtp.acc brakująca prędkość, dtp.still ticki bez ruchu, dtp.sec ostatnia sekunda timera,
+# dtp.skyt limit czasu spadania
 scoreboard objectives add dtp.fx dummy
 scoreboard objectives add dtp.ev dummy
 scoreboard objectives add dtp.next dummy
-scoreboard objectives add dtp.sky dummy
+scoreboard objectives add dtp.gy dummy
+scoreboard objectives add dtp.py dummy
+scoreboard objectives add dtp.acc dummy
+scoreboard objectives add dtp.still dummy
+scoreboard objectives add dtp.sec dummy
 scoreboard objectives add dtp.skyt dummy
+
+# Stałe do obliczeń
+scoreboard players set #2 dtp 2
+scoreboard players set #20 dtp 20
+scoreboard players set #49 dtp 49
+scoreboard players set #50 dtp 50
+scoreboard players set #100 dtp 100
+scoreboard players set #392 dtp 392
 
 # --- Konfiguracja (zapisana w świecie, /reload jej nie nadpisuje) ---
 # Zmiana: /data modify storage dtp:config <klucz> set value <liczba>
@@ -34,7 +47,7 @@ scoreboard objectives add dtp.skyt dummy
 # w_dimension       : inny wymiar (Overworld / Nether / End)
 #
 # sky_height        : ile kratek nad ziemią ląduje teleport "niebo"
-# sky_save          : 0 = radź sobie sam, 1 = dostajesz wiadro wody na MLG, 2 = spadochron tuż nad ziemią
+# sky_save          : 0 = radź sobie sam, 1 = wiadro wody na MLG, 2 = spadochron tuż nad ziemią
 # lava_time         : ile ticków po wpadnięciu do lawy następne obrażenie cię z niej wyrzuci
 # end_chance        : % szans, że skok między wymiarami trafi do Endu
 # dim_radius        : zasięg losowania miejsca po zmianie wymiaru
@@ -49,7 +62,8 @@ execute unless data storage dtp:config sky_height run data modify storage dtp:co
 execute unless data storage dtp:config lava_time run data modify storage dtp:config lava_time set value 20
 execute unless data storage dtp:config end_chance run data modify storage dtp:config end_chance set value 25
 execute unless data storage dtp:config dim_radius run data modify storage dtp:config dim_radius set value 300
-# Szanse zdarzeń i sky_save: ustawiane raz na wersję konfiguracji (patrz dtp:config_v2)
-execute unless data storage dtp:config {version:2} run function dtp:config_v2
+# Szanse zdarzeń i sky_save: ustawiane raz na wersję konfiguracji (dtp:config_v2, dtp:config_v3)
+execute unless data storage dtp:config version run function dtp:config_v2
+execute if data storage dtp:config {version:2} run function dtp:config_v3
 
 tellraw @a [{"text":"[Damage TP] ","color":"light_purple","bold":true},{"text":"załadowany. Każde obrażenie teleportuje cię w losowe miejsce... zwykle. ","color":"gray","bold":false},{"text":"(by ToMiiX)","color":"gray","bold":false,"italic":true}]

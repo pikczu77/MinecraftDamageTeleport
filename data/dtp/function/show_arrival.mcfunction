@@ -9,7 +9,8 @@ execute store result score #lx dtp run data get entity @s Pos[0]
 execute store result score #ly dtp run data get entity @s Pos[1]
 execute store result score #lz dtp run data get entity @s Pos[2]
 
-title @s actionbar [{"text":"Teleport ","color":"light_purple"},{"text":"-> ","color":"gray"},{"score":{"name":"#lx","objective":"dtp"},"color":"white"},{"text":" ","color":"gray"},{"score":{"name":"#ly","objective":"dtp"},"color":"white"},{"text":" ","color":"gray"},{"score":{"name":"#lz","objective":"dtp"},"color":"white"}]
+# Spadającym z nieba pasek akcji zajmuje timer
+execute unless entity @s[tag=dtp.falling] run title @s actionbar [{"text":"Teleport ","color":"light_purple"},{"text":"-> ","color":"gray"},{"score":{"name":"#lx","objective":"dtp"},"color":"white"},{"text":" ","color":"gray"},{"score":{"name":"#ly","objective":"dtp"},"color":"white"},{"text":" ","color":"gray"},{"score":{"name":"#lz","objective":"dtp"},"color":"white"}]
 particle minecraft:reverse_portal ~ ~1 ~ 0.4 0.9 0.4 0.1 80 force
 
 execute if score @s dtp.ev matches 1 run function dtp:arrival/random
